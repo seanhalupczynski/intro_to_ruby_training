@@ -170,9 +170,9 @@ puts sean_halupczynski.profile
 #
 # # puts golfer_name.first_name
 # #
-# golfer_with_5_or_more_majors = golfer_names.select { |nam| nam.major_wins > 4 }
-# puts "----------Golfers w/ 5+ major wins-----------"
-# puts Golfer.list_profile(golfer_with_5_or_more_majors)
+golfer_with_5_or_more_majors = golfer_names.select { |nam| nam.major_wins > 4 }
+puts "----------Golfers w/ 5+ major wins-----------"
+puts Golfer.list_profile(golfer_with_5_or_more_majors)
 #
 # basketball_with_5_or_more_titles = basketball_names.select { |nam| nam.titles > 4 }
 # puts "----------Basketballers w/ 5+ titles-----------"

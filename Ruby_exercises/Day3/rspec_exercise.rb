@@ -1,4 +1,5 @@
 require "rspec"
+require "date"
 # require "../Day2/inheritance_exercise.rb"
 
 def upcase_all(array)
@@ -8,13 +9,15 @@ end
 class Golfer
   attr_accessor :major_wins
 
-  def initialize(first_name:, last_name:, gender:, pga_wins:, major_wins:, ranking:)
+  def initialize(first_name:, last_name:, gender:, pga_wins:, major_wins:, ranking:, last_win_date:, date_since_last_win: Date.today)
     @first_name = first_name
     @last_name = last_name
     @gender = gender
     @pga_wins = pga_wins
     @major_wins = major_wins
     @ranking = ranking
+    @last_win_date = last_win_date
+    @date_since_last_win = date_since_last_win
   end
 
   def profile
@@ -85,6 +88,14 @@ class Golfer
       puts "#{@first_name} #{@last_name} is on the LPGA Tour."
     end
   end
+
+  def days_since_last_win
+    if @last_win_date > @date_since_last_win
+      "Time machines don't exist."
+    else
+      @date_since_last_win - @last_win_date
+    end
+  end
 end
 # sean_halupczynski = Golfer.new(first_name: "Sean", last_name: "Halupczynski", gender: "Male", pga_wins: 100, major_wins: 35, ranking: 1)
 # puts sean_halupczynski.number_suffix
@@ -98,7 +109,7 @@ RSpec.describe Golfer do
   describe '#name' do
     context 'golfer name' do
       it 'shows the golfers name' do
-        sean_halupczynski = Golfer.new(first_name: "Sean", last_name: "Halupczynski", gender: "Male", pga_wins: 100, major_wins: 35, ranking: 1)
+        sean_halupczynski = Golfer.new(first_name: "Sean", last_name: "Halupczynski", gender: "Male", pga_wins: 100, major_wins: 35, ranking: 1, last_win_date: Date.new(2018, 8, 15))
         expect(sean_halupczynski.name).to eq("Sean Halupczynski")
       end
     end
@@ -109,7 +120,7 @@ RSpec.describe Golfer do
   describe '#profile' do
     context 'new golfer profile' do
       it 'displays the new golfer profile' do
-        sean_halupczynski = Golfer.new(first_name: "Sean", last_name: "Halupczynski", gender: "Male", pga_wins: 100, major_wins: 35, ranking: 1)
+        sean_halupczynski = Golfer.new(first_name: "Sean", last_name: "Halupczynski", gender: "Male", pga_wins: 100, major_wins: 35, ranking: 1, last_win_date: Date.new(2018, 8, 15))
         expect(sean_halupczynski.profile).to eq("Sean Halupczynski has 100 wins on the PGA Tour. 35 of those wins are in Majors.")
       end
     end
@@ -120,7 +131,7 @@ RSpec.describe Golfer do
   describe '#world_ranking' do
     context 'golfer\'s world ranking' do
       it 'displays the golfer\'s world ranking' do
-        sean_halupczynski = Golfer.new(first_name: "Sean", last_name: "Halupczynski", gender: "Male", pga_wins: 100, major_wins: 35, ranking: 11)
+        sean_halupczynski = Golfer.new(first_name: "Sean", last_name: "Halupczynski", gender: "Male", pga_wins: 100, major_wins: 35, ranking: 11, last_win_date: Date.new(2018, 8, 15))
         expect(sean_halupczynski.world_ranking).to eq("Sean Halupczynski is the 11th ranked player in the world.")
       end
     end
@@ -131,8 +142,35 @@ RSpec.describe Golfer do
   describe '#list_name' do
     context 'list gofler names' do
       it 'lists the names of the golfers' do
-        golfers = [Golfer.new(first_name: "Sean", last_name: "Halupczynski", gender: "Male", pga_wins: 100, major_wins: 35, ranking: 2), Golfer.new(first_name: "Corissa", last_name: "Halupczynski", gender: "Female", pga_wins: 100, major_wins: 35, ranking: 1)]
+        golfers = [Golfer.new(first_name: "Sean", last_name: "Halupczynski", gender: "Male", pga_wins: 100, major_wins: 35, ranking: 2, last_win_date: Date.new(2018, 8, 15)), Golfer.new(first_name: "Corissa", last_name: "Halupczynski", gender: "Female", pga_wins: 100, major_wins: 35, ranking: 1, last_win_date: Date.new(2018, 8, 15))]
         expect(Golfer.list_name(golfers)).to eq("Sean Halupczynski Corissa Halupczynski")
+      end
+    end
+  end
+end
+
+RSpec.describe Golfer do
+  describe '#days_since_last_win' do
+    context 'give the days since golfer last won as of today' do
+      it 'gives the days since the golfer last won as of today' do
+        sean_halupczynski = Golfer.new(first_name: "Sean", last_name: "Halupczynski", gender: "Male", pga_wins: 100, major_wins: 35, ranking: 11, last_win_date: Date.new(2018, 8, 15))
+        expect(sean_halupczynski.days_since_last_win).to eq(245)
+      end
+    end
+  # end
+  # describe '#days_since_last_win' do
+    context 'give the days since golfer last won as of one week later' do
+      it 'gives the days since the golfer last won as of one week later' do
+        sean_halupczynski = Golfer.new(first_name: "Sean", last_name: "Halupczynski", gender: "Male", pga_wins: 100, major_wins: 35, ranking: 11, last_win_date: Date.new(2018, 8, 15), date_since_last_win: Date.new(2018, 8, 22))
+        expect(sean_halupczynski.days_since_last_win).to eq(7)
+      end
+    end
+  # end
+  # describe '#days_since_last_win' do
+    context 'give the days since golfer last won as of one week earlier' do
+      it 'gives the days since the golfer last won as of one week earlier' do
+        sean_halupczynski = Golfer.new(first_name: "Sean", last_name: "Halupczynski", gender: "Male", pga_wins: 100, major_wins: 35, ranking: 11, last_win_date: Date.new(2018, 8, 15), date_since_last_win: Date.new(2018, 8, 8))
+        expect(sean_halupczynski.days_since_last_win).to eq("Time machines don't exist.")
       end
     end
   end
