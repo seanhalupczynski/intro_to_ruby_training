@@ -148,29 +148,32 @@ kobe_bryant = Basketball.new(
   titles: 5
 )
 
+sean_halupczynski = Golfer.new(first_name: "Sean", last_name: "Halupczynski", gender: "Male", pga_wins: 100, major_wins: 35)
 
-puts tiger_woods.sport
-puts rickie_fowler.sport
-puts brooks_koepka.sport
-puts phil_mickelson.sport
-puts annika_sorenstam.sport
+puts sean_halupczynski.profile
 
-golfer_names = [tiger_woods, rickie_fowler, brooks_koepka, phil_mickelson, annika_sorenstam]
-basketball_names = [michael_jordan, lebron_james, kobe_bryant]
-
-puts "----------Golfers-----------"
-Golfer.list_name(golfer_names)
-puts "----------Basketballers-----------"
-Basketball.list_name(basketball_names)
-
-# Golfer.has_5_or_more_majors(golfer_name)
-
-# puts golfer_name.first_name
+# puts tiger_woods.sport
+# puts rickie_fowler.sport
+# puts brooks_koepka.sport
+# puts phil_mickelson.sport
+# puts annika_sorenstam.sport
 #
-golfer_with_5_or_more_majors = golfer_names.select { |nam| nam.major_wins > 4 }
-puts "----------Golfers w/ 5+ major wins-----------"
-puts Golfer.list_profile(golfer_with_5_or_more_majors)
-
-basketball_with_5_or_more_titles = basketball_names.select { |nam| nam.titles > 4 }
-puts "----------Basketballers w/ 5+ titles-----------"
-puts Basketball.list_profile(basketball_with_5_or_more_titles)
+# golfer_names = [tiger_woods, rickie_fowler, brooks_koepka, phil_mickelson, annika_sorenstam]
+# basketball_names = [michael_jordan, lebron_james, kobe_bryant]
+#
+# puts "----------Golfers-----------"
+# Golfer.list_name(golfer_names)
+# puts "----------Basketballers-----------"
+# Basketball.list_name(basketball_names)
+#
+# # Golfer.has_5_or_more_majors(golfer_name)
+#
+# # puts golfer_name.first_name
+# #
+# golfer_with_5_or_more_majors = golfer_names.select { |nam| nam.major_wins > 4 }
+# puts "----------Golfers w/ 5+ major wins-----------"
+# puts Golfer.list_profile(golfer_with_5_or_more_majors)
+#
+# basketball_with_5_or_more_titles = basketball_names.select { |nam| nam.titles > 4 }
+# puts "----------Basketballers w/ 5+ titles-----------"
+# puts Basketball.list_profile(basketball_with_5_or_more_titles)
