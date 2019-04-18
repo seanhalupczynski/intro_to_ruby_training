@@ -1,5 +1,6 @@
 class Golfer
   attr_accessor :major_wins
+  attr_accessor :first_name
 
   def initialize(first_name:, last_name:, gender:, pga_wins:, major_wins:)
     @first_name = first_name
@@ -106,11 +107,11 @@ phil_mickelson = Golfer.new(
 )
 
 annika_sorenstam = Golfer.new(
-  first_name = "Annika",
-  last_name = "Sorenstam",
-  gender = "Female",
-  pga_wins = 72,
-  major_wins = 10
+  first_name: "Annika",
+  last_name: "Sorenstam",
+  gender: "Female",
+  pga_wins: 72,
+  major_wins: 10
 )
 
 michael_jordan = Basketball.new(
@@ -135,7 +136,7 @@ kobe_bryant = Basketball.new(
 )
 
 
-puts tiger_woods.profile
+puts tiger_woods.first_name
 puts rickie_fowler.profile
 puts brooks_koepka.profile
 puts phil_mickelson.profile
